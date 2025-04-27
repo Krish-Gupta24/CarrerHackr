@@ -1195,7 +1195,7 @@ export namespace Prisma {
     bio: string | null
     experience: number | null
     createdAt: Date
-    updatedAt: Date | null
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1298,7 +1298,7 @@ export namespace Prisma {
       bio: string | null
       experience: number | null
       createdAt: Date
-      updatedAt: Date | null
+      updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3494,7 +3494,7 @@ export namespace Prisma {
     bio?: StringNullableFilter<"User"> | string | null
     experience?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     industryInsight?: XOR<IndustryInsightNullableScalarRelationFilter, IndustryInsightWhereInput> | null
   }
 
@@ -3508,7 +3508,7 @@ export namespace Prisma {
     bio?: SortOrderInput | SortOrder
     experience?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
     industryInsight?: IndustryInsightOrderByWithRelationInput
   }
 
@@ -3525,7 +3525,7 @@ export namespace Prisma {
     bio?: StringNullableFilter<"User"> | string | null
     experience?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     industryInsight?: XOR<IndustryInsightNullableScalarRelationFilter, IndustryInsightWhereInput> | null
   }, "id" | "email">
 
@@ -3539,7 +3539,7 @@ export namespace Prisma {
     bio?: SortOrderInput | SortOrder
     experience?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -3560,7 +3560,7 @@ export namespace Prisma {
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
     experience?: IntNullableWithAggregatesFilter<"User"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updatedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type IndustryInsightWhereInput = {
@@ -3659,7 +3659,7 @@ export namespace Prisma {
     bio?: string | null
     experience?: number | null
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
     industryInsight?: IndustryInsightCreateNestedOneWithoutUsersInput
   }
 
@@ -3673,7 +3673,7 @@ export namespace Prisma {
     bio?: string | null
     experience?: number | null
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
   }
 
   export type UserUpdateInput = {
@@ -3685,7 +3685,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     industryInsight?: IndustryInsightUpdateOneWithoutUsersNestedInput
   }
 
@@ -3699,7 +3699,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyInput = {
@@ -3712,7 +3712,7 @@ export namespace Prisma {
     bio?: string | null
     experience?: number | null
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -3724,7 +3724,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -3737,7 +3737,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IndustryInsightCreateInput = {
@@ -3894,17 +3894,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type IndustryInsightNullableScalarRelationFilter = {
     is?: IndustryInsightWhereInput | null
     isNot?: IndustryInsightWhereInput | null
@@ -4026,20 +4015,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
   export type JsonNullableListFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -4167,10 +4142,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type IndustryInsightUpdateOneWithoutUsersNestedInput = {
@@ -4319,17 +4290,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4414,20 +4374,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
@@ -4538,7 +4484,7 @@ export namespace Prisma {
     bio?: string | null
     experience?: number | null
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateWithoutIndustryInsightInput = {
@@ -4550,7 +4496,7 @@ export namespace Prisma {
     bio?: string | null
     experience?: number | null
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
   }
 
   export type UserCreateOrConnectWithoutIndustryInsightInput = {
@@ -4592,7 +4538,7 @@ export namespace Prisma {
     bio?: StringNullableFilter<"User"> | string | null
     experience?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type UserCreateManyIndustryInsightInput = {
@@ -4604,7 +4550,7 @@ export namespace Prisma {
     bio?: string | null
     experience?: number | null
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
   }
 
   export type UserUpdateWithoutIndustryInsightInput = {
@@ -4616,7 +4562,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateWithoutIndustryInsightInput = {
@@ -4628,7 +4574,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyWithoutIndustryInsightInput = {
@@ -4640,7 +4586,7 @@ export namespace Prisma {
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     experience?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
