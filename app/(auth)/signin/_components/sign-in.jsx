@@ -6,25 +6,29 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import Link from "next/link"; 
+import Link from "next/link";
 import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema } from "@/lib/zod";
+import { isOnboarded } from "@/actions/user";
+import { useRouter } from "next/navigation";
 
-export function SignIn() {
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState(null);
+  const router = useRouter();
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(signInSchema),
+  });
+
+  const onSubmit = async (data) => {
+    const { name, email, password } = data;
     setErrorMessage(null);
-    
-
-    if (password.length < 8) {
-      setErrorMessage("Password must be at least 8 characters long.");
-      return;
-    }
 
     const res = await signIn("credentials", {
       redirect: false,
@@ -35,10 +39,18 @@ export function SignIn() {
 
     if (res?.error) {
       setErrorMessage("Check your Credentials");
-      toast.error("Login Failed")
+      toast.error("Login Failed");
     } else {
-      window.location.href = "/";
       toast.success("Login Successful");
+      const { Onboarded } = await isOnboarded();
+
+      if (!Onboarded) {
+        toast.success("ONBOARDING");
+        router.push("/onboarding");
+      } else {
+        toast.success("NOT ONBOARDING");
+        router.push("/");
+      }
     }
   };
 
@@ -50,20 +62,27 @@ export function SignIn() {
     >
       <Card className="w-full max-w-md shadow-xl p-6 rounded-2xl">
         <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-2xl font-bold">Continue To CarrerHackr</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            Continue To CareerHackr
+          </CardTitle>
         </CardHeader>
 
         <CardContent>
-          <form onSubmit={onSubmit} className="flex flex-col gap-5">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
               <Input
                 id="name"
                 type="text"
                 placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                {...register("name")}
               />
+              {errors.name && (
+                <p className="text-xs text-red-500">{errors.name.message}</p>
+              )}
             </div>
 
             <div className="grid gap-2">
@@ -72,9 +91,11 @@ export function SignIn() {
                 id="email"
                 type="email"
                 placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
               />
+              {errors.email && (
+                <p className="text-xs text-red-500">{errors.email.message}</p>
+              )}
             </div>
 
             <div className="grid gap-2">
@@ -88,9 +109,13 @@ export function SignIn() {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
               />
+              {errors.password && (
+                <p className="text-xs text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             {errorMessage && (
@@ -98,7 +123,7 @@ export function SignIn() {
             )}
 
             <Button type="submit" className="w-full">
-              Continue 
+              Continue
             </Button>
 
             <div className="relative my-4">

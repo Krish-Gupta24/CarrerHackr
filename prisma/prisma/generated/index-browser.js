@@ -126,6 +126,7 @@ exports.Prisma.UserScalarFieldEnum = {
   industry: 'industry',
   bio: 'bio',
   experience: 'experience',
+  skills: 'skills',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
